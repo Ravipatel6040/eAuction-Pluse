@@ -1,0 +1,62 @@
+import './Viewproductcategory.css';
+import { useState ,useEffect } from 'react';
+import axios from 'axios';
+import { _categoryapiurl } from '../../Api.url';
+import{Link} from 'react-router-dom'
+
+function Viewproductcategory()
+{
+    const [cDetails ,setCategoryDetails]=useState([]);
+    useEffect(()=>{
+        axios.get(_categoryapiurl+"fetch").then((response)=>{
+          setCategoryDetails(response.data);  
+        }).catch((error)=>{
+          console.log(error);   
+        });
+      }); 
+
+
+    return(
+        <>
+        <br/><br/>
+          {/* About Start */}
+          <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                        <h1 class="mb-4" style={{"color":"#15b9d9"}}>View Category List </h1>
+                        <hr/>
+
+                       <center>
+                        <div id="category_main"> 
+                            {
+                                cDetails.map((row)=>(
+                                <div class="category_part">
+                                <Link to={`/viewpsc/${row.catnm}`}>
+                                 <img src={`./assets/uploads/caticons/${row.caticonnm}`}height="115"width="240"/>
+                                 <br/>
+                                 <b>{row.catnm}</b>
+                                 </Link>
+                                </div>
+                               
+                                ))
+                            }
+                        </div>
+                        </center>
+                        
+                     
+
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        {/* About End */}
+
+
+        </>
+    );
+
+}
+
+export default Viewproductcategory;

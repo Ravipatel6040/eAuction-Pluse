@@ -1,0 +1,11 @@
+#category_main{
+    height: 350px;
+    width: 900px;
+    /* background-color: yellow; */
+}
+.category_part{
+    height: 150px;
+    width: 300px;
+    /* background-color: green; */
+    float: left;
+}
